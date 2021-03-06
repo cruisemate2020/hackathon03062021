@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
+import { Link, Switch, Route } from "react-router-dom";
+import Home from "./components/Home.js";
+import Jokes from "./components/Jokes.js";
+import Gifs from "./components/Gifs.js";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <div className="App">
+        <nav>
+          <Link to="/">Home</Link>
+          <Link to="/gifs">Animated Gifs</Link>
+          <Link to="/jokes">Jokes</Link>
+        </nav>
+        <Switch>
+          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route exact path="/gifs" render={(props) => <Gifs {...props} />} />
+          <Route exact path="/jokes" render={(props) => <Jokes {...props} />} />
+        </Switch>{" "}
+      </div>
+    );
+  }
 }
-
-export default App;
